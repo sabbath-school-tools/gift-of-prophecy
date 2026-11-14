@@ -5,97 +5,186 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <title>The Gift of Prophecy · Interactive Lessons</title>
+<meta name="description" content="Interactive Sabbath School study pages for the Fourth Quarter 2026, in English and Hiligaynon.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Mulish:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Mulish:wght@400;600;700;800&display=swap">
 <style>
-/* Quiet plum on pale stone, one rose hairline. A single column of lessons, newest first. */
+/* A deep plum hero, like the dark bands that open every lesson, carries the quarter as a thread of thirteen
+   dots: each ready lesson lit in its own lesson's color, the weeks still to come left as open rings.
+   Below it, one row per lesson with that lesson's own picture and accent, newest first. */
 :root {
-  --bg: #F6F3F5; --paper: #FFFFFF; --ink: #2A1F2B; --muted: #6B5E68; --line: #E3DAE0;
-  --accent: #6E3B5C; --rose: #C0708A;
+  --bg: #F6F3F5; --ink: #2A1F2B; --muted: #675A64; --line: #E3DAE0;
+  --plum: #6E3B5C; --rose: #C0708A;
+  --hero: #241A25; --hero-ink: #F7EFF4; --hero-soft: rgba(247, 239, 244, .74); --hero-rose: #E9A9BE;
   --display: "Cormorant Garamond", Garamond, Georgia, serif;
   --body: "Mulish", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #161216; --paper: #1F191F; --ink: #EFE7ED; --muted: #AE9FAA; --line: #352B33; --accent: #D9A3C4; --rose: #E59AB0; color-scheme: dark; }
+  :root { --bg: #151015; --ink: #EFE7ED; --muted: #AE9FAA; --line: #2E252D; --plum: #D9A3C4; --rose: #E59AB0; --hero: #0F0B0F; color-scheme: dark; }
 }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.55; }
-.wrap { max-width: 720px; margin: 0 auto; padding: 48px 18px 64px; }
-.eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: 12.5px; font-weight: 700; color: var(--muted); margin: 0; }
-h1 { font-family: var(--display); font-weight: 600; font-size: clamp(44px, 9vw, 64px); line-height: 1; margin: 10px 0 0; color: var(--accent); text-wrap: balance; }
-.rule { width: 72px; height: 2px; background: var(--rose); margin: 22px 0; border: 0; }
-.dek { margin: 0; max-width: 34em; color: var(--muted); }
-.lessons { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 14px; }
-.lesson { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; display: grid; grid-template-columns: auto 1fr; gap: 4px 20px; }
-.no { grid-row: span 3; font-family: var(--display); font-size: 46px; line-height: .9; color: var(--rose); font-weight: 600; font-variant-numeric: lining-nums; min-width: 1.1em; text-align: center; }
-.title { font-family: var(--display); font-size: 27px; font-weight: 600; line-height: 1.15; margin: 0; }
-.hil { font-style: italic; color: var(--muted); }
-.meta { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
-.meta .new { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: .1em; font-size: 12px; margin-right: 8px; }
+html { scrollbar-color: var(--rose) transparent; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--body); }
+::selection { background: rgba(192, 112, 138, .28); }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 18px; }
+
+/* hero */
+.hero { background: var(--hero); color: var(--hero-ink); padding: 72px 0 40px; }
+h1 { font: 600 clamp(54px, 13vw, 108px)/.92 var(--display); letter-spacing: -.02em; margin: 0; text-wrap: balance; }
+.hil-title { font: italic 500 clamp(24px, 5vw, 34px)/1.2 var(--display); color: var(--hero-rose); margin: 14px 0 0; }
+.dek { max-width: 34em; margin: 22px 0 0; color: var(--hero-soft); }
+.quarter { margin: 6px 0 0; color: var(--hero-soft); font-size: 15px; }
+
+/* the quarter as a thread: one dot per lesson */
+.thread { margin-top: 48px; }
+.thread ol { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; position: relative; }
+.thread ol::before { content: ""; position: absolute; left: 6px; right: 6px; top: 6px; height: 1.5px;
+  background: linear-gradient(90deg, var(--hero-rose) 0 50%, rgba(233, 169, 190, .28) 50% 100%); }  /* solid through lesson 7 (6 of 12 gaps) */
+.thread li { position: relative; display: grid; justify-items: center; gap: 10px; width: 12px; }
+.dot { display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px var(--hero); position: relative; }
+a.dot::after { content: ""; position: absolute; inset: -12px; }  /* a finger-sized target around a small dot */
+a.dot:hover { transform: scale(1.25); }
+.dot.soon { background: var(--hero); box-shadow: 0 0 0 4px var(--hero), inset 0 0 0 1.5px rgba(233, 169, 190, .45); }
+.thread .n { font: 700 11px/1 var(--body); color: var(--hero-soft); font-variant-numeric: tabular-nums; }
+.thread .soon + .n { color: rgba(247, 239, 244, .6); }
+.thread p { display: flex; justify-content: space-between; gap: 12px; margin: 18px 0 0; font-size: 14px; color: var(--hero-soft); }
+.thread p strong { color: var(--hero-ink); font-weight: 700; }
+
+/* lessons, newest first; each row wears its own lesson's accent */
+.lessons { list-style: none; margin: 0; padding: 8px 0 0; }
+.lesson { --a: var(--al); display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 4px 20px; align-items: center; padding: 26px 0; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+.lesson:first-child { border-top: 0; }
+.pic { grid-row: span 4; width: 88px; height: 88px; border-radius: 50%; object-fit: cover; background: #fff; box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--a); }
+.title { font: 600 clamp(26px, 5.4vw, 32px)/1.08 var(--display); margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.hil { font: italic 500 19px/1.25 var(--display); color: var(--muted); margin: 0; }
+.meta { margin: 2px 0 0; font-size: 14.5px; color: var(--muted); }
+.meta b { color: var(--a); font-weight: 800; }
+.new { display: inline-block; margin-right: 8px; padding: 2px 9px; border-radius: 999px; background: var(--a); color: #fff; font: 800 11px/1.5 var(--body); letter-spacing: .1em; text-transform: uppercase; vertical-align: 1px; }
 .links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.links a { display: inline-block; padding: 8px 14px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 15px; border: 1.5px solid var(--accent); color: var(--accent); }
-.links a.primary { background: var(--accent); color: var(--paper); }
-.links a:hover { border-color: var(--rose); }
-.links a:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
-footer { margin-top: 44px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; display: grid; gap: 8px; }
+.links a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 15px;
+  border: 1.5px solid var(--a); color: var(--a); transition: background-color .2s ease, color .2s ease; }
+.links a.primary { background: var(--a); color: #fff; }
+.links a:hover { background: var(--a); color: #fff; }
+.links a.primary:hover { background: transparent; color: var(--a); }
+
+/* the newest lesson leads, larger */
+.lesson.latest { grid-template-columns: 132px minmax(0, 1fr); padding: 36px 0 32px; }
+.lesson.latest .pic { width: 132px; height: 132px; }
+.lesson.latest .title { font-size: clamp(32px, 7vw, 44px); }
+
+footer { margin-top: 28px; padding: 22px 0 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; display: grid; gap: 8px; }
 footer p { margin: 0; }
-@media (max-width: 480px) {
-  .wrap { padding-top: 34px; }
-  .lesson { grid-template-columns: 1fr; padding: 18px; }
-  .no { grid-row: auto; text-align: left; font-size: 38px; }
+
+@media (prefers-color-scheme: dark) {
+  .lesson { --a: var(--ad); }
+  .pic { background: #f4f1ec; }
+  .new, .links a.primary, .links a:hover { color: #151015; }
 }
+@media (max-width: 520px) {
+  .hero { padding-top: 56px; }
+  .lesson { grid-template-columns: 64px minmax(0, 1fr); gap: 2px 16px; }
+  .pic { width: 64px; height: 64px; grid-row: span 3; align-self: start; }
+  .links { grid-column: 1 / -1; }
+  .lesson.latest { grid-template-columns: 1fr; }
+  .lesson.latest .pic { width: 120px; height: 120px; grid-row: auto; margin-bottom: 10px; }
+  .thread p { flex-direction: column; gap: 2px; }
+}
+
+/* one moment of motion: the thread draws across the quarter, then the lessons light up in turn */
+@media (prefers-reduced-motion: no-preference) {
+  .thread ol::before { transform-origin: left; animation: draw 1.4s cubic-bezier(.16, 1, .3, 1) both; }
+  .dot { animation: light .7s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(.12s + var(--i) * 80ms); }
+  .dot.soon { animation: none; }
+  a.dot { transition: transform .2s ease; }
+}
+@keyframes draw { from { transform: scaleX(0); } }
+@keyframes light { from { transform: scale(.2); opacity: 0; } }
 </style>
 </head>
 <body>
-<main class="wrap">
-  <p class="eyebrow">Adult Sabbath School · Fourth Quarter 2026</p>
-  <h1>The Gift of Prophecy</h1>
-  <hr class="rule">
-  <p class="dek">Interactive study pages for each week's lesson, in English and Hiligaynon. Read through, answer the questions, and try the infographic, mind map, flashcards, slides and quiz. They open on any phone or computer, and your answers stay on your device.</p>
+<header class="hero">
+  <div class="wrap">
+    <h1>The Gift of Prophecy</h1>
+    <p class="hil-title" lang="hil">Ang Dolot Sang Pagpanagna</p>
+    <p class="dek">Interactive study pages for each week’s lesson, in English and Hiligaynon. Read through, answer the questions, and try the infographic, mind map, flashcards, slides and quiz. They open on any phone or computer, and your answers stay on your device.</p>
+    <p class="quarter">Adult Sabbath School · Fourth Quarter 2026</p>
 
-  <ol class="lessons">
-    <li class="lesson">
-      <span class="no" aria-hidden="true">7</span>
-      <h2 class="title">Now Hear This! <span class="hil">· Pamatii Ninyo Ini!</span></h2>
-      <p class="meta"><span class="new">Latest</span>Lesson 7 · November 7–13</p>
-      <div class="links"><a class="primary" href="lessons/7-now-hear-this.html">English</a><a href="lessons/7-now-hear-this-hiligaynon.html">Hiligaynon</a></div>
+    <nav class="thread" aria-label="Lessons this quarter">
+      <!-- When a lesson is added: turn its span.dot.soon into a lit a.dot (with its --c), and move the 50% stop in .thread ol::before to (lessons - 1) / 12 -->
+      <ol>
+        <li><a class="dot" href="#lesson-1" style="--c:#A2D6B4;--i:0" aria-label="Lesson 1: The Creator Speaks"></a><span class="n" aria-hidden="true">1</span></li>
+        <li><a class="dot" href="#lesson-2" style="--c:#F6A273;--i:1" aria-label="Lesson 2: The Call of a Prophet"></a><span class="n" aria-hidden="true">2</span></li>
+        <li><a class="dot" href="#lesson-3" style="--c:#F5C463;--i:2" aria-label="Lesson 3: Old Testament Prophets"></a><span class="n" aria-hidden="true">3</span></li>
+        <li><a class="dot" href="#lesson-4" style="--c:#AABCF3;--i:3" aria-label="Lesson 4: New Testament Prophets"></a><span class="n" aria-hidden="true">4</span></li>
+        <li><a class="dot" href="#lesson-5" style="--c:#B8ACFF;--i:4" aria-label="Lesson 5: Revelation and Inspiration"></a><span class="n" aria-hidden="true">5</span></li>
+        <li><a class="dot" href="#lesson-6" style="--c:#EE9C74;--i:5" aria-label="Lesson 6: The Prophetic Writings"></a><span class="n" aria-hidden="true">6</span></li>
+        <li><a class="dot" href="#lesson-7" style="--c:#F58BA0;--i:6" aria-label="Lesson 7: Now Hear This!"></a><span class="n" aria-hidden="true">7</span></li>
+        <li><span class="dot soon" aria-label="Lesson 8: coming soon"></span><span class="n" aria-hidden="true">8</span></li>
+        <li><span class="dot soon" aria-label="Lesson 9: coming soon"></span><span class="n" aria-hidden="true">9</span></li>
+        <li><span class="dot soon" aria-label="Lesson 10: coming soon"></span><span class="n" aria-hidden="true">10</span></li>
+        <li><span class="dot soon" aria-label="Lesson 11: coming soon"></span><span class="n" aria-hidden="true">11</span></li>
+        <li><span class="dot soon" aria-label="Lesson 12: coming soon"></span><span class="n" aria-hidden="true">12</span></li>
+        <li><span class="dot soon" aria-label="Lesson 13: coming soon"></span><span class="n" aria-hidden="true">13</span></li>
+      </ol>
+      <p><span><strong>Lessons 1–7</strong> are ready</span><span>13 lessons this quarter</span></p>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <ol class="lessons" reversed>
+    <li class="lesson latest" id="lesson-7" style="--al:#A01029;--ad:#F58BA0">
+      <img class="pic" src="img/lesson-7.jpg" alt="" width="132" height="132">
+      <h2 class="title">Now Hear This!</h2>
+      <p class="hil" lang="hil">Pamatii Ninyo Ini!</p>
+      <p class="meta"><span class="new">Latest</span><b>Lesson 7</b> · November 7–13</p>
+      <div class="links"><a class="primary" href="lessons/7-now-hear-this.html">English</a><a href="lessons/7-now-hear-this-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">6</span>
-      <h2 class="title">The Prophetic Writings <span class="hil">· Ang mga Sinulat sang mga Manalagna</span></h2>
-      <p class="meta">Lesson 6 · October 31 – November 6</p>
-      <div class="links"><a class="primary" href="lessons/6-the-prophetic-writings.html">English</a><a href="lessons/6-the-prophetic-writings-hiligaynon.html">Hiligaynon</a></div>
+    <li class="lesson" id="lesson-6" style="--al:#9A4220;--ad:#EE9C74">
+      <img class="pic" src="img/lesson-6.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">The Prophetic Writings</h2>
+      <p class="hil" lang="hil">Ang mga Sinulat sang mga Manalagna</p>
+      <p class="meta"><b>Lesson 6</b> · October 31 – November 6</p>
+      <div class="links"><a class="primary" href="lessons/6-the-prophetic-writings.html">English</a><a href="lessons/6-the-prophetic-writings-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">5</span>
-      <h2 class="title">Revelation and Inspiration <span class="hil">· Bugna kag Inspirasyon</span></h2>
-      <p class="meta">Lesson 5 · October 24–30</p>
-      <div class="links"><a class="primary" href="lessons/5-revelation-and-inspiration.html">English</a><a href="lessons/5-revelation-and-inspiration-hiligaynon.html">Hiligaynon</a></div>
+    <li class="lesson" id="lesson-5" style="--al:#4535C4;--ad:#B8ACFF">
+      <img class="pic" src="img/lesson-5.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">Revelation and Inspiration</h2>
+      <p class="hil" lang="hil">Bugna kag Inspirasyon</p>
+      <p class="meta"><b>Lesson 5</b> · October 24–30</p>
+      <div class="links"><a class="primary" href="lessons/5-revelation-and-inspiration.html">English</a><a href="lessons/5-revelation-and-inspiration-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">4</span>
-      <h2 class="title">New Testament Prophets <span class="hil">· Mga Manalagna sang Bag-o nga Katipan</span></h2>
-      <p class="meta">Lesson 4 · October 17–23</p>
-      <div class="links"><a class="primary" href="lessons/4-new-testament-prophets.html">English</a><a href="lessons/4-new-testament-prophets-hiligaynon.html">Hiligaynon</a><a href="lessons/4-new-testament-prophets-study-path.html">Study path</a><a href="lessons/4-new-testament-prophets-hiligaynon-study-path.html">Dalan sang pagtuon</a></div>
+    <li class="lesson" id="lesson-4" style="--al:#2A438F;--ad:#AABCF3">
+      <img class="pic" src="img/lesson-4.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">New Testament Prophets</h2>
+      <p class="hil" lang="hil">Mga Manalagna sang Bag-o nga Katipan</p>
+      <p class="meta"><b>Lesson 4</b> · October 17–23</p>
+      <div class="links"><a class="primary" href="lessons/4-new-testament-prophets.html">English</a><a href="lessons/4-new-testament-prophets-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">3</span>
-      <h2 class="title">Old Testament Prophets <span class="hil">· Mga Manalagna sang Daan nga Katipan</span></h2>
-      <p class="meta">Lesson 3 · October 10–16</p>
-      <div class="links"><a class="primary" href="lessons/3-old-testament-prophets.html">English</a><a href="lessons/3-old-testament-prophets-hiligaynon.html">Hiligaynon</a></div>
+    <li class="lesson" id="lesson-3" style="--al:#8F600A;--ad:#F5C463">
+      <img class="pic" src="img/lesson-3.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">Old Testament Prophets</h2>
+      <p class="hil" lang="hil">Mga Manalagna sang Daan nga Katipan</p>
+      <p class="meta"><b>Lesson 3</b> · October 10–16</p>
+      <div class="links"><a class="primary" href="lessons/3-old-testament-prophets.html">English</a><a href="lessons/3-old-testament-prophets-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">2</span>
-      <h2 class="title">The Call of a Prophet <span class="hil">· Ang Pagpanawag Sang Manalagna</span></h2>
-      <p class="meta">Lesson 2 · October 3–9</p>
-      <div class="links"><a class="primary" href="lessons/2-the-call-of-a-prophet.html">English</a><a href="lessons/2-the-call-of-a-prophet-hiligaynon.html">Hiligaynon</a></div>
+    <li class="lesson" id="lesson-2" style="--al:#9C3C17;--ad:#F6A273">
+      <img class="pic" src="img/lesson-2.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">The Call of a Prophet</h2>
+      <p class="hil" lang="hil">Ang Pagpanawag Sang Manalagna</p>
+      <p class="meta"><b>Lesson 2</b> · October 3–9</p>
+      <div class="links"><a class="primary" href="lessons/2-the-call-of-a-prophet.html">English</a><a href="lessons/2-the-call-of-a-prophet-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
-    <li class="lesson">
-      <span class="no" aria-hidden="true">1</span>
-      <h2 class="title">The Creator Speaks <span class="hil">· Ang Manunuga Nagapamulong</span></h2>
-      <p class="meta">Lesson 1 · September 26 – October 2</p>
-      <div class="links"><a class="primary" href="lessons/1-the-creator-speaks.html">English</a><a href="lessons/1-the-creator-speaks-hiligaynon.html">Hiligaynon</a></div>
+    <li class="lesson" id="lesson-1" style="--al:#255A3B;--ad:#A2D6B4">
+      <img class="pic" src="img/lesson-1.jpg" alt="" width="88" height="88" loading="lazy">
+      <h2 class="title">The Creator Speaks</h2>
+      <p class="hil" lang="hil">Ang Manunuga Nagapamulong</p>
+      <p class="meta"><b>Lesson 1</b> · September 26 – October 2</p>
+      <div class="links"><a class="primary" href="lessons/1-the-creator-speaks.html">English</a><a href="lessons/1-the-creator-speaks-hiligaynon.html" lang="hil">Hiligaynon</a></div>
     </li>
   </ol>
 
