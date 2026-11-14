@@ -642,7 +642,7 @@ footer p { margin: 0 0 4px; }
 
   function infographic() {
     var g = D.infographic;
-    var btn = el("button", { class: "ig", "aria-label": T("openInfographic") },
+    var btn = el("button", { class: "ig" },
       el("img", { src: g.src, alt: g.title, loading: "lazy" }),
       el("span", { class: "glass" }, icon("zoom"), T("tapEnlarge")));
     btn.addEventListener("click", function () { openLightbox(g.src, g.title, btn); });
@@ -696,8 +696,8 @@ footer p { margin: 0 0 4px; }
     var front = el("div", { class: "fc-face fc-front" }, el("span", { class: "fc-tag", text: T("fcQuestion") }), qText,
       el("span", { class: "fc-hint" }, icon("tap"), T("fcTap")));
     var back = el("div", { class: "fc-face fc-back", "aria-hidden": "true" }, el("span", { class: "fc-tag", text: T("fcAnswer") }), aText);
-    var card = el("button", { class: "fc-card", "aria-label": T("fcAria") }, el("div", { class: "fc-inner" }, front, back));
-    var prev = el("button", { class: "btn small", "aria-label": T("fcPrevAria") }, icon("left"), T("fcBack"));
+    var card = el("button", { class: "fc-card" }, el("div", { class: "fc-inner" }, front, back));
+    var prev = el("button", { class: "btn small" }, icon("left"), T("fcBack"));
     var next = el("button", { class: "btn small", "aria-label": T("fcNextAria") }, T("fcSkip"), icon("right"));
     var miss = el("button", { class: "btn bad" }, icon("restart"), T("fcMiss"));
     var know = el("button", { class: "btn ok" }, icon("check"), T("fcKnow"));
@@ -768,7 +768,7 @@ footer p { margin: 0 0 4px; }
     var hitPrev = el("button", { class: "sv-hit prev", "aria-label": T("svPrevAria") }, el("span", null, icon("left")));
     var hitNext = el("button", { class: "sv-hit next", "aria-label": T("svNextAria") }, el("span", null, icon("right")));
     var stage = el("div", { class: "sv-stage" }, img, count, hitPrev, hitNext);
-    var prev = el("button", { class: "btn small", "aria-label": T("svPrevAria") }, icon("left"), T("svPrev"));
+    var prev = el("button", { class: "btn small" }, icon("left"), T("svPrev"));
     var next = el("button", { class: "btn small", "aria-label": T("svNextAria") }, T("svNext"), icon("right"));
     var fs = el("button", { class: "btn small" }, icon("expand"), T("svFull"));
     var thumbs = el("div", { class: "sv-thumbs" });
