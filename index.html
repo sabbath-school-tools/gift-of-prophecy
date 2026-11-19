@@ -15,14 +15,14 @@
    Below it, one row per lesson with that lesson's own picture and accent, newest first. */
 :root {
   --bg: #F6F3F5; --ink: #2A1F2B; --muted: #675A64; --line: #E3DAE0;
-  --plum: #6E3B5C; --rose: #C0708A;
+  --plum: #6E3B5C; --rose: #C0708A; --field: #FFFFFF; --ok: #1F6B45; --bad: #A3261F;
   --hero: #241A25; --hero-ink: #F7EFF4; --hero-soft: rgba(247, 239, 244, .74); --hero-rose: #E9A9BE;
   --display: "Cormorant Garamond", Garamond, Georgia, serif;
   --body: "Mulish", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
-  :root { --bg: #151015; --ink: #EFE7ED; --muted: #AE9FAA; --line: #2E252D; --plum: #D9A3C4; --rose: #E59AB0; --hero: #0F0B0F; color-scheme: dark; }
+  :root { --bg: #151015; --ink: #EFE7ED; --muted: #AE9FAA; --line: #2E252D; --plum: #D9A3C4; --rose: #E59AB0; --hero: #0F0B0F; --field: #1D161C; --ok: #8FD3AE; --bad: #F2A199; color-scheme: dark; }
 }
 * { box-sizing: border-box; }
 html { scrollbar-color: var(--rose) transparent; -webkit-text-size-adjust: 100%; }
@@ -76,6 +76,31 @@ a.dot:hover { transform: scale(1.25); }
 .lesson.latest .pic { width: 132px; height: 132px; }
 .lesson.latest .title { font-size: clamp(32px, 7vw, 44px); }
 
+/* feedback: a short anonymous form; the script at the end of the page sends it to a Google Form */
+.quarter a { color: var(--hero-rose); font-weight: 700; }
+.fb { padding: 36px 0 6px; border-top: 1px solid var(--line); scroll-margin-top: 16px; }
+.fb-lead { margin: 10px 0 0; max-width: 36em; color: var(--muted); }
+.fb form { display: grid; gap: 20px; margin-top: 24px; }
+.fb-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.fb label, .fb legend { display: block; padding: 0; font-weight: 700; font-size: 15px; }
+.fb label small { font-weight: 400; font-size: 14px; color: var(--muted); }
+.fb select, .fb textarea { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 11px 12px; border: 1.5px solid var(--muted); border-radius: 10px;
+  background: var(--field); color: var(--ink); font: 400 16px/1.45 var(--body); }
+.fb textarea { resize: vertical; }
+.fb fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+.fb-kinds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.fb-kinds label { position: relative; }
+.fb-kinds input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.fb-kinds span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: 1.5px solid var(--plum); border-radius: 999px; color: var(--plum); font-weight: 700; font-size: 15px; }
+.fb-kinds input:checked + span { background: var(--plum); color: var(--bg); }
+.fb-kinds input:focus-visible + span { outline: 2px solid var(--rose); outline-offset: 3px; }
+.fb-send { justify-self: start; min-height: 48px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--plum); color: var(--bg); font: 800 16px/1 var(--body); cursor: pointer; }
+.fb-send:disabled { opacity: .6; cursor: default; }
+.fb-status { margin: 0; min-height: 1.6em; font-weight: 700; }
+.fb-status.ok { color: var(--ok); }
+.fb-status.bad { color: var(--bad); }
+.fb-alt { margin: 0; font-size: 14px; color: var(--muted); }
+
 footer { margin-top: 28px; padding: 22px 0 56px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13.5px; display: grid; gap: 8px; }
 footer p { margin: 0; }
 
@@ -91,6 +116,7 @@ footer p { margin: 0; }
   .links { grid-column: 1 / -1; }
   .lesson.latest { grid-template-columns: 1fr; }
   .lesson.latest .pic { width: 120px; height: 120px; grid-row: auto; margin-bottom: 10px; }
+  .fb-row { grid-template-columns: 1fr; }
   .thread p { flex-direction: column; gap: 2px; }
 }
 
@@ -111,7 +137,7 @@ footer p { margin: 0; }
     <h1>The Gift of Prophecy</h1>
     <p class="hil-title" lang="hil">Ang Dolot Sang Pagpanagna</p>
     <p class="dek">Interactive study pages for each week’s lesson, in English and Hiligaynon. Read through, answer the questions, and try the infographic, mind map, flashcards, slides and quiz. They open on any phone or computer, and your answers stay on your device.</p>
-    <p class="quarter">Adult Sabbath School · Fourth Quarter 2026</p>
+    <p class="quarter">Adult Sabbath School · Fourth Quarter 2026 · <a href="#feedback">Give feedback</a></p>
 
     <nav class="thread" aria-label="Lessons this quarter">
       <!-- When a lesson is added: turn its span.dot.soon into a lit a.dot (with its --c), and move the 50% stop in .thread ol::before to (lessons - 1) / 12 -->
@@ -188,10 +214,71 @@ footer p { margin: 0; }
     </li>
   </ol>
 
+  <section class="fb" id="feedback" aria-labelledby="fb-title">
+    <h2 class="title" id="fb-title">Help us make these better</h2>
+    <p class="fb-lead">Was something hard to read, confusing, or not working? Did a lesson help you? Tell us. It is anonymous: no name or email is asked. <span lang="hil">Puede ka magsulat sa Hiligaynon ukon English.</span></p>
+    <form id="fbForm" novalidate>
+      <div class="fb-row">
+        <label>Which lesson?
+          <select name="lesson" id="fbLesson"><option>The whole website</option></select>
+        </label>
+        <label>Which language did you read?
+          <select name="lang"><option>English</option><option>Hiligaynon</option><option>Both</option></select>
+        </label>
+      </div>
+      <fieldset>
+        <legend>How was it?</legend>
+        <div class="fb-kinds">
+          <label><input type="radio" name="kind" value="It helped me"><span>It helped me</span></label>
+          <label><input type="radio" name="kind" value="Some parts were unclear"><span>Some parts were unclear</span></label>
+          <label><input type="radio" name="kind" value="Something didn't work"><span>Something didn’t work</span></label>
+          <label><input type="radio" name="kind" value="I have an idea"><span>I have an idea</span></label>
+        </div>
+      </fieldset>
+      <label for="fbMsg">Tell us more <small>(optional: which part? what happened? any word that sounds wrong?)</small></label>
+      <textarea id="fbMsg" name="msg" rows="4" maxlength="2000" style="margin-top:-14px"></textarea>
+      <button class="fb-send" type="submit">Send feedback</button>
+      <p class="fb-status" id="fbStatus" role="status"></p>
+      <p class="fb-alt">If the button does not work, <a href="https://docs.google.com/forms/d/e/1FAIpQLScdCoY3biRh0gKw0rfsfuyOT5RL-dr4Mj_ozlb2z6i2_X2u4w/viewform">open the feedback form</a> instead.</p>
+    </form>
+  </section>
+
   <footer>
     <p>Study pages based on the Adult Bible Study Guide, Fourth Quarter 2026, “The Gift of Prophecy.” For class study.</p>
     <p>Scripture quotations marked NKJV are taken from the New King James Version®. Copyright © 1982 by Thomas Nelson. Used by permission. All rights reserved. Hiligaynon Scripture: Ang Pulong Sang Dios © 2012 Philippine Bible Society.</p>
   </footer>
 </main>
+<script>
+/* Feedback form. Answers go to the Google Form "Lesson feedback" (its sheet is read at the start of each lesson).
+   shortcut: sent with mode "no-cors", so the page cannot see Google's reply and only knows the request left;
+   upgrade to a small relay that returns a status if answers ever go missing. */
+(function () {
+  var SEND = "https://docs.google.com/forms/d/e/1FAIpQLScdCoY3biRh0gKw0rfsfuyOT5RL-dr4Mj_ozlb2z6i2_X2u4w/formResponse";
+  var form = document.getElementById("fbForm"), status = document.getElementById("fbStatus"), pick = document.getElementById("fbLesson");
+  var btn = form.querySelector(".fb-send");
+  // the lesson picker lists whatever lessons are on this page, newest first
+  [].forEach.call(document.querySelectorAll(".lesson"), function (li) {
+    var o = document.createElement("option");
+    o.textContent = "Lesson " + li.id.replace("lesson-", "") + ": " + li.querySelector(".title").textContent;
+    pick.appendChild(o);
+  });
+  function say(text, cls) { status.textContent = text; status.className = "fb-status" + (cls ? " " + cls : ""); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var kind = form.querySelector("input[name=kind]:checked"), msg = form.msg.value.trim();
+    if (!kind && !msg) { say("Choose an answer or write a few words first.", "bad"); return; }
+    var body = new URLSearchParams();
+    body.append("entry.335041523", pick.value);
+    body.append("entry.1723729585", (kind ? "[" + kind.value + "] " : "") + msg);
+    body.append("entry.1691737280", ["homepage", form.lang.value, matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+      innerWidth + "x" + innerHeight, navigator.userAgent].join(" | "));
+    btn.disabled = true; say("Sending…");
+    fetch(SEND, { method: "POST", mode: "no-cors", body: body })
+      .then(function () { form.reset(); say("Thank you. Your feedback was sent.", "ok"); })
+      .catch(function () { say("It could not be sent. Check your internet connection and try again.", "bad"); })
+      .then(function () { btn.disabled = false; });
+  });
+})();
+</script>
 </body>
 </html>
