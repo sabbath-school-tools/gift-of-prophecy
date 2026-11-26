@@ -43,7 +43,7 @@ h1 { font: 600 clamp(54px, 13vw, 108px)/.92 var(--display); letter-spacing: -.02
 .thread { margin-top: 48px; }
 .thread ol { list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; position: relative; }
 .thread ol::before { content: ""; position: absolute; left: 6px; right: 6px; top: 6px; height: 1.5px;
-  background: linear-gradient(90deg, var(--hero-rose) 0 58.333%, rgba(233, 169, 190, .28) 58.333% 100%); }  /* solid through lesson 8 (7 of 12 gaps) */
+  background: linear-gradient(90deg, var(--hero-rose) 0 66.667%, rgba(233, 169, 190, .28) 66.667% 100%); }  /* solid through lesson 9 (8 of 12 gaps) */
 .thread li { position: relative; display: grid; justify-items: center; gap: 10px; width: 12px; }
 .dot { display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 4px var(--hero); position: relative; }
 a.dot::after { content: ""; position: absolute; inset: -12px; }  /* a finger-sized target around a small dot */
@@ -117,10 +117,10 @@ footer p { margin: 0; }
     <h1>The Gift of Prophecy</h1>
     <p class="hil-title" lang="hil">Ang Dolot Sang Pagpanagna</p>
     <p class="dek">Interactive study pages for each week’s lesson, in English and Hiligaynon. Read through, answer the questions, and try the infographic, mind map, flashcards, slides and quiz. They open on any phone or computer, and your answers stay on your device.</p>
-    <p class="quarter">Adult Sabbath School · Fourth Quarter 2026 · <a href="feedback.html">Give feedback</a></p>
+    <p class="quarter">Adult Sabbath School · Fourth Quarter 2026 · <a href="feedback.html">Please help us make this better</a></p>
 
     <nav class="thread" aria-label="Lessons this quarter">
-      <!-- When a lesson is added: turn its span.dot.soon into a lit a.dot (with its --c), and move the 50% stop in .thread ol::before to (lessons - 1) / 12 -->
+      <!-- When a lesson is added: turn its span.dot.soon into a lit a.dot (with its --c), move both stops in .thread ol::before to (lessons - 1) / 12, and update “Lessons 1–N are ready” -->
       <ol>
         <li><a class="dot" href="#lesson-1" style="--c:#A2D6B4;--i:0" aria-label="Lesson 1: The Creator Speaks"></a><span class="n" aria-hidden="true">1</span></li>
         <li><a class="dot" href="#lesson-2" style="--c:#F6A273;--i:1" aria-label="Lesson 2: The Call of a Prophet"></a><span class="n" aria-hidden="true">2</span></li>
@@ -130,13 +130,13 @@ footer p { margin: 0; }
         <li><a class="dot" href="#lesson-6" style="--c:#EE9C74;--i:5" aria-label="Lesson 6: The Prophetic Writings"></a><span class="n" aria-hidden="true">6</span></li>
         <li><a class="dot" href="#lesson-7" style="--c:#F58BA0;--i:6" aria-label="Lesson 7: Now Hear This!"></a><span class="n" aria-hidden="true">7</span></li>
         <li><a class="dot" href="#lesson-8" style="--c:#E8A84A;--i:7" aria-label="Lesson 8: Interpreting Prophetic Writings"></a><span class="n" aria-hidden="true">8</span></li>
-        <li><span class="dot soon" aria-label="Lesson 9: coming soon"></span><span class="n" aria-hidden="true">9</span></li>
+        <li><a class="dot" href="#lesson-9" style="--c:#8CC4EE;--i:8" aria-label="Lesson 9: Testing the Prophets"></a><span class="n" aria-hidden="true">9</span></li>
         <li><span class="dot soon" aria-label="Lesson 10: coming soon"></span><span class="n" aria-hidden="true">10</span></li>
         <li><span class="dot soon" aria-label="Lesson 11: coming soon"></span><span class="n" aria-hidden="true">11</span></li>
         <li><span class="dot soon" aria-label="Lesson 12: coming soon"></span><span class="n" aria-hidden="true">12</span></li>
         <li><span class="dot soon" aria-label="Lesson 13: coming soon"></span><span class="n" aria-hidden="true">13</span></li>
       </ol>
-      <p><span><strong>Lessons 1–8</strong> are ready</span><span>13 lessons this quarter</span></p>
+      <p><span><strong>Lessons 1–9</strong> are ready</span><span>13 lessons this quarter</span></p>
     </nav>
   </div>
 </header>
@@ -208,7 +208,7 @@ footer p { margin: 0; }
     </li>
   </ol>
 
-  <p class="fb-go"><a href="feedback.html">Give feedback</a></p>
+  <p class="fb-go"><a href="feedback.html">Please help us make this better</a></p>
 
   <footer>
     <p>Study pages based on the Adult Bible Study Guide, Fourth Quarter 2026, “The Gift of Prophecy.” For class study.</p>
